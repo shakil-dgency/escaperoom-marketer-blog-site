@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "https://fair-poncho-deer.cyclic.cloud" });
 
 export const logIn = (formData) => API.post("/apiuser/signin", formData);
 export const createPost = (newPost) => API.post("/apiposts", newPost);
