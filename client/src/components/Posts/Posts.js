@@ -20,9 +20,9 @@ function Posts({ setCurrentId }) {
 			{posts.map((post) => (
 				<div className="post-wrapper" key={post._id}>
 					<img src={post.selectedFile} alt="" className="post_img" />
-					<p className="">{post.title}</p>
+					<p className="">{post.title.slice(0, 80) + "..."}</p>
 					<p className="">{post.tags.map((tag) => `#${tag} `)}</p>
-					<p className="">{post.short_description.slice(0, 80) + "..."}</p>
+					{/* <p className="">{post.short_description.slice(0, 80) + "..."}</p> */}
 					<div className="">
 						<button className="post__delete" onClick={() => dispatch(deletePost(post._id))}>
 							Delete
