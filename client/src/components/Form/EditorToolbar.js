@@ -39,6 +39,31 @@ const Font = Quill.import("formats/font");
 Font.whitelist = ["arial", "comic-sans", "courier-new", "georgia", "helvetica", "Inter", "lucida"];
 Quill.register(Font, true);
 
+//Custom alt and title attribute for img tag
+const Image = Quill.import("formats/image");
+class ImageBlot extends Image {
+	static create(value) {
+		const node = super.create(value);
+
+		const [altText, imageTitle] = insertImageBlot().split(" | ");
+
+		if (typeof value === "string") {
+			node.setAttribute("alt", altText);
+			node.setAttribute("title", imageTitle);
+		}
+		return node;
+	}
+}
+
+Quill.register(ImageBlot);
+
+//function for img alt and title attribute
+var insertImageBlot = function () {
+	const dialog = window.prompt("Enter alt text, image title, and select an image:", "Alternative Text | Image Title");
+
+	return dialog;
+};
+
 // Modules object for setting up the Quill editor
 export const modules = (props) => ({
 	toolbar: {
@@ -46,6 +71,7 @@ export const modules = (props) => ({
 		handlers: {
 			undo: undoChange,
 			redo: redoChange,
+			alt: insertImageBlot,
 		},
 	},
 	history: {
