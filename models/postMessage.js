@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema({
 	creator: String,
 	tags: [String],
 	selectedFile: String,
+	cover_img_alt: String,
 	createdAt: {
 		type: Date,
 		default: new Date(),

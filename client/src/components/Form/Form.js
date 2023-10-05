@@ -16,6 +16,7 @@ function Form({ setCurrentId, currentId }) {
 		description: "",
 		tags: "",
 		selectedFile: "",
+		cover_img_alt: "",
 	});
 
 	const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
@@ -54,6 +55,7 @@ function Form({ setCurrentId, currentId }) {
 			description: "",
 			tags: "",
 			selectedFile: "",
+			cover_img_alt: "",
 		});
 	};
 
@@ -118,10 +120,17 @@ function Form({ setCurrentId, currentId }) {
 				</div>
 
 				<div className="img-btn">
-					{/* <div className=""> */}
-					{/* <label htmlFor="">Cover Image</label> */}
-					<FileBase type="file" multiple={false} onDone={({ base64 }) => SetPostData({ ...postData, selectedFile: base64 })} />
-					{/* </div> */}
+					<div className="file_input">
+						<FileBase type="file" multiple={false} onDone={({ base64 }) => SetPostData({ ...postData, selectedFile: base64 })} />
+						<input
+							type="text"
+							name="alt"
+							placeholder=" Cover Image Alt"
+							value={postData.cover_img_alt}
+							onChange={(e) => SetPostData((prev) => ({ ...prev, cover_img_alt: e.target.value }))}
+							className="alt_input"
+						/>
+					</div>
 					<button type="submit" className="btn__submit">
 						{" "}
 						{`${currentId ? "Update" : "Submit"}`}
